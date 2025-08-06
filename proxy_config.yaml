@@ -1,0 +1,209 @@
+# Enhanced Universal Secure Proxy Server v2.0 - Configuration
+# Cấu hình proxy server với tính năng bảo mật cao và chống phát hiện
+
+# Server Configuration
+server:
+  port: 28265
+  bind_address: "0.0.0.0"
+  max_connections: 2000
+  timeout: 30
+  buffer_size: 65536
+
+# Security Settings
+security:
+  # Encryption settings
+  encryption:
+    enabled: true
+    algorithm: "AES-256-GCM"  # AES-256-GCM, ChaCha20, Fernet
+    key_derivation_iterations: 200000
+    
+  # DNS Protection
+  dns_protection:
+    enabled: true
+    use_doh: true  # DNS over HTTPS
+    use_dot: true  # DNS over TLS
+    secure_dns_servers:
+      - "1.1.1.1"
+      - "8.8.8.8"
+      - "9.9.9.9"
+      - "208.67.222.222"
+    doh_servers:
+      - "https://cloudflare-dns.com/dns-query"
+      - "https://dns.google/dns-query"
+      - "https://dns.quad9.net/dns-query"
+    cache_ttl: 1800
+
+  # Rate Limiting
+  rate_limiting:
+    enabled: true
+    requests_per_minute: 100
+    burst_size: 20
+    cleanup_interval: 60
+
+# Anti-Detection Features
+anti_detection:
+  enabled: true
+  
+  # Header Spoofing
+  header_spoofing:
+    enabled: true
+    rotate_user_agents: true
+    use_realistic_headers: true
+    
+  # Traffic Obfuscation
+  traffic_obfuscation:
+    enabled: true
+    add_random_padding: true
+    mimic_http_traffic: true
+    randomize_packet_timing: true
+    
+  # IP Rotation
+  ip_rotation:
+    enabled: true
+    rotation_interval: 300  # seconds
+    regions: ["US", "EU", "ASIA"]
+
+# Performance Settings
+performance:
+  # Connection Pooling
+  connection_pooling:
+    enabled: true
+    max_connections_per_host: 50
+    idle_timeout: 300
+    
+  # Compression
+  compression:
+    enabled: true
+    min_size: 1024
+    algorithms: ["gzip", "brotli", "lz4"]
+    
+  # Threading
+  threading:
+    max_workers: 200
+    thread_pool_size: 100
+    
+  # Traffic Shaping
+  traffic_shaping:
+    enabled: true
+    patterns:
+      burst: [0.001, 0.01]    # min, max delay in seconds
+      steady: [0.01, 0.05]
+      normal: [0.001, 0.005]
+
+# Protocol Support
+protocols:
+  http:
+    enabled: true
+    port: 28265
+    
+  https:
+    enabled: true
+    port: 28265
+    ssl_verification: false
+    
+  socks4:
+    enabled: true
+    port: 28265
+    
+  socks5:
+    enabled: true
+    port: 28265
+    authentication: false
+    
+  tcp:
+    enabled: true
+    port: 28265
+    echo_server: true
+    
+  udp:
+    enabled: true
+    port: 28265
+
+# Logging Configuration
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  console_output: true
+  file_output: true
+  log_directory: "./logs"
+  max_file_size: "10MB"
+  backup_count: 5
+  
+  # Log formats
+  formats:
+    console: "%(levelname)s: %(message)s"
+    file: "%(asctime)s - %(name)s - %(levelname)s - [%(threadName)s] - %(message)s"
+
+# Statistics and Monitoring
+monitoring:
+  enabled: true
+  stats_interval: 45  # seconds
+  save_stats: true
+  stats_file: "./logs/stats.json"
+  
+  # Metrics to track
+  metrics:
+    - "connections"
+    - "bytes_transferred"
+    - "protocols"
+    - "blocked_attempts"
+    - "encrypted_sessions"
+    - "memory_usage"
+    - "cpu_usage"
+
+# Advanced Features
+advanced:
+  # Geo-location spoofing
+  geo_spoofing:
+    enabled: false
+    fake_locations: ["US", "UK", "DE", "JP", "SG"]
+    
+  # Deep Packet Inspection (DPI) Evasion
+  dpi_evasion:
+    enabled: true
+    fragment_packets: true
+    randomize_ports: false
+    use_decoy_traffic: true
+    
+  # Steganography (hide traffic in normal data)
+  steganography:
+    enabled: false
+    cover_protocols: ["http", "https"]
+    
+  # Load Balancing
+  load_balancing:
+    enabled: false
+    backend_servers: []
+    algorithm: "round_robin"  # round_robin, least_connections, weighted
+
+# Blacklist/Whitelist
+access_control:
+  # IP Whitelist (empty = allow all)
+  ip_whitelist: []
+  
+  # IP Blacklist
+  ip_blacklist: []
+  
+  # Country blocking
+  country_blocking:
+    enabled: false
+    blocked_countries: []
+    
+  # Domain filtering
+  domain_filtering:
+    enabled: false
+    blocked_domains: []
+    allowed_domains: []
+
+# Backup and Recovery
+backup:
+  enabled: false
+  backup_interval: 3600  # seconds
+  backup_directory: "./backups"
+  max_backups: 10
+
+# Development and Testing
+development:
+  debug_mode: false
+  test_mode: false
+  mock_responses: false
+  profiling: false

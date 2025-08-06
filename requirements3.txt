@@ -1,0 +1,84 @@
+# Enhanced Universal Secure Proxy Server v2.0 - Requirements
+# Military-grade security, anti-detection, high-performance proxy
+
+# Core cryptography and security
+cryptography>=41.0.0          # Military-grade encryption (AES-256-GCM, ChaCha20)
+pycryptodome>=3.19.0          # Additional crypto algorithms
+
+# DNS resolution and security
+dnspython>=2.4.0              # Secure DNS resolution
+aiohttp>=3.9.0                # DNS over HTTPS support
+
+# Performance and compression
+lz4>=4.3.0                    # Ultra-fast compression
+brotli>=1.1.0                 # High-ratio compression
+zstandard>=0.22.0             # Facebook's Zstandard compression
+
+# System monitoring and performance
+psutil>=5.9.0                 # System resource monitoring
+memory-profiler>=0.61.0       # Memory usage profiling
+
+# Async and threading enhancements
+asyncio-throttle>=1.0.2       # Async rate limiting
+concurrent-futures>=3.1.1     # Enhanced threading (Python 2 compatibility)
+
+# Network and protocol enhancements
+requests>=2.31.0              # HTTP client library
+urllib3>=2.0.0                # HTTP library with security features
+certifi>=2023.11.17           # CA certificates bundle
+
+# Security and obfuscation
+python-socks>=2.4.0           # SOCKS client support
+pysocks>=1.7.1                # SOCKS proxy support
+fake-useragent>=1.4.0         # Random user agent generation
+
+# Optional: Advanced features
+# scapy>=2.5.0                # Packet manipulation (uncomment if needed)
+# python-nmap>=0.7.1          # Network scanning (uncomment if needed)
+
+# Development and testing dependencies (optional)
+pytest>=7.4.0                # Testing framework
+pytest-asyncio>=0.21.0       # Async testing
+black>=23.11.0                # Code formatting
+flake8>=6.1.0                 # Code linting
+mypy>=1.7.0                   # Type checking
+
+# Logging and monitoring
+colorlog>=6.8.0               # Colored logging output
+structlog>=23.2.0             # Structured logging
+
+# Configuration and utilities
+pyyaml>=6.0.1                 # YAML configuration support
+python-dotenv>=1.0.0          # Environment variable loading
+click>=8.1.7                  # Command line interface
+
+# Network utilities
+netifaces>=0.11.0             # Network interface information
+ipaddress>=1.0.23             # IP address manipulation (usually built-in)
+
+# Data processing
+pandas>=2.1.0                 # Data analysis (for statistics)
+numpy>=1.24.0                 # Numerical computing
+
+# Optional: GUI interface
+# tkinter                     # Built-in GUI toolkit (uncomment if building GUI)
+# PyQt5>=5.15.10             # Advanced GUI toolkit (uncomment if needed)
+
+# Build and distribution
+setuptools>=69.0.0            # Package building
+wheel>=0.42.0                 # Wheel package format
+
+# Notes:
+# - Most standard library modules (socket, threading, ssl, etc.) are built-in
+# - Some dependencies are optional based on features you want to enable
+# - For production deployment, consider pinning exact versions
+# - Run: pip install -r requirements.txt
+
+# Installation command:
+# pip install -r requirements.txt
+
+# For development environment:
+# pip install -r requirements.txt pytest black flake8 mypy
+
+# For minimal installation (basic proxy functionality):
+# pip install cryptography dnspython psutil aiohttp 
