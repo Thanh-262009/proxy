@@ -44,13 +44,13 @@ rust-proxy/
 ### **Windows PowerShell (Run as Administrator):**
 ```powershell
 # Download and run setup
-iwr -useb "https://raw.githubusercontent.com/your-repo/rust-proxy/main/scripts/install-windows.ps1" | iex
+iwr -useb "https://raw.githubusercontent.com/Thanh-262009/proxy/main/scripts/install-windows.ps1" | iex
 ```
 
 ### **Linux/macOS:**
 ```bash
 # Download and run setup
-curl -fsSL "https://raw.githubusercontent.com/your-repo/rust-proxy/main/scripts/install-linux.sh" | bash
+curl -fsSL "https://raw.githubusercontent.com/Thanh-262009/proxy/main/scripts/install-linux.sh" | bash
 ```
 
 ## 2️⃣ Manual Setup
@@ -71,7 +71,7 @@ edition = "2021"
 authors = ["Rust Proxy Team <contact@rustproxy.dev>"]
 description = "Ultra High Performance Multi-Protocol Proxy Server"
 license = "MIT"
-repository = "https://github.com/your-repo/rust-proxy"
+repository = "https://github.com/Thanh-262009/proxy"
 keywords = ["proxy", "socks5", "http", "performance", "async"]
 categories = ["network-programming", "web-programming"]
 
@@ -360,7 +360,7 @@ networks:
 ```ini
 [Unit]
 Description=Rust High Performance Proxy Server
-Documentation=https://github.com/your-repo/rust-proxy
+Documentation=https://github.com/Thanh-262009/proxy
 After=network-online.target
 Wants=network-online.target
 AssertFileIsExecutable=/opt/rust-proxy/proxy-server
@@ -751,12 +751,12 @@ cleanup_interval = 300
 
 ### **Windows (PowerShell as Admin):**
 ```powershell
-iwr -useb "raw.githubusercontent.com/your-repo/rust-proxy/main/install.ps1" | iex
+iwr -useb "raw.githubusercontent.com/Thanh-262009/proxy/main/install.ps1" | iex
 ```
 
 ### **Linux/macOS:**
 ```bash
-curl -fsSL "raw.githubusercontent.com/your-repo/rust-proxy/main/install.sh" | bash
+curl -fsSL "raw.githubusercontent.com/Thanh-262009/proxy/main/install.sh" | bash
 ```
 
 ## **Build and Install Commands**
@@ -764,7 +764,7 @@ curl -fsSL "raw.githubusercontent.com/your-repo/rust-proxy/main/install.sh" | ba
 ### **Development Setup:**
 ```bash
 # Clone and build
-git clone https://github.com/your-repo/rust-proxy.git
+git clone https://github.com/Thanh-262009/proxy.git
 cd rust-proxy
 chmod +x scripts/build-linux.sh
 ./scripts/build-linux.sh
