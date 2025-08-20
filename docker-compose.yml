@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  rust-proxy:
+    build: .
+    container_name: rust-proxy-server
+    restart: unless-stopped
+    ports:
+      - "28265:28265"
+      - "9090:9090"  # Metrics port
+    volumes:
+      - ./config.toml:/etc/proxy/config.toml:ro
+      - ./logs:/var/log/proxy
+    environment:
+      - RUST_LOG=info
+      - RUST_BACKTRACE=1
+    networks:
+      - proxy-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:28265/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '2.0'
+        reservations:
+          memory: 128M
+          cpus: '0.5'
+
+networks:
+  proxy-network:
+    driver: bridge
