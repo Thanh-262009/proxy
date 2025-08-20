@@ -1,0 +1,22 @@
+<service>
+    <id>RustProxyService</id>
+    <name>Rust Proxy Server</name>
+    <description>High Performance Multi-Protocol Proxy Server</description>
+    <executable>%BASE%\proxy-server.exe</executable>
+    <arguments>--config "%BASE%\config.toml"</arguments>
+    <workingdirectory>%BASE%</workingdirectory>
+    <logmode>rotate</logmode>
+    <depend>Tcpip</depend>
+    <startmode>Automatic</startmode>
+    <delayedAutoStart>false</delayedAutoStart>
+    <stopparentprocessfirst>true</stopparentprocessfirst>
+    <stoptimeout>15 sec</stoptimeout>
+    <waithint>15 sec</waithint>
+    <sleeptime>1 sec</sleeptime>
+    <interactive>false</interactive>
+    
+    <onfailure action="restart" delay="5 sec"/>
+    <onfailure action="restart" delay="10 sec"/>
+    <onfailure action="none"/>
+    <resetfailure>1 hour</resetfailure>
+</service>
