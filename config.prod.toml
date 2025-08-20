@@ -1,0 +1,89 @@
+[server]
+host = "0.0.0.0"
+port = 28265
+max_connections = 50000
+connection_timeout = 60
+buffer_size = 131072  # 128KB for production
+worker_threads = 0    # Auto-detect
+
+[dns]
+primary = "1.1.1.1:53"
+secondary = "1.0.0.1:53"
+fallback = ["8.8.8.8:53", "8.8.4.4:53", "208.67.222.222:53", "9.9.9.9:53"]
+timeout = 3
+
+[proxy]
+protocols = ["http", "https", "socks5", "socks4"]
+user_agents = [
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:121.0) Gecko/20100101 Firefox/121.0",
+    "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1",
+    "Mozilla/5.0 (iPad; CPU OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1",
+    "Mozilla/5.0 (Android 14; Mobile; rv:121.0) Gecko/121.0 Firefox/121.0"
+]
+rotate_user_agent = true
+remove_proxy_headers = true
+add_forwarded_headers = false
+connection_pool_size = 1000
+keep_alive_timeout = 300
+
+[logging]
+enabled = true
+level = "info"
+file = "/var/log/proxy/proxy.log"
+max_size = "500MB"
+max_files = 10
+console = false
+json_format = true
+include_timestamp = true
+include_level = true
+include_target = true
+
+[performance]
+tcp_nodelay = true
+tcp_keepalive = true
+so_reuseaddr = true
+so_reuseport = true
+backlog = 4096
+read_timeout = 60
+write_timeout = 60
+connect_timeout = 30
+idle_timeout = 300
+max_concurrent_streams = 1000
+
+[security]
+block_private_ips = false
+allowed_ports = []
+blocked_ports = [22, 23, 25, 135, 139, 445, 993, 995, 1433, 3389]
+max_request_size = "100MB"
+rate_limit = 10000
+rate_limit_window = 60
+enable_ip_whitelist = false
+ip_whitelist = []
+enable_ip_blacklist = true
+ip_blacklist = ["10.0.0.0/8", "192.168.0.0/16", "172.16.0.0/12"]
+
+[stats]
+enabled = true
+interval = 30
+detailed = true
+export_metrics = true
+metrics_port = 9090
+metrics_path = "/metrics"
+health_check_port = 28265
+health_check_path = "/health"
+
+[ssl]
+enabled = false
+cert_file = "/etc/ssl/proxy/proxy.crt"
+key_file = "/etc/ssl/proxy/proxy.key"
+protocols = ["TLSv1.2", "TLSv1.3"]
+
+[cache]
+enabled = true
+max_size = "1GB"
+ttl = 3600
+cleanup_interval = 300
